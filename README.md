@@ -14,11 +14,16 @@ WLWブックマークレット + 1
 ※2: Cookieに前回の表示結果を記録し、差分を計算して表示しています。  
 ※3: 試合数が0のキャストは表示されません。
 
+####[本家](https://github.com/syara-temp/wlw)を使ったことがある人向けの説明
+* キャストが追加された場合に、ユーザが対応できるため、ソースの修正を待つ必要がなくなりました。  
+* 全キャストの情報を取得するため、各キャストのページで実行しなくても、全キャスト勝率などが正しく表示されます。  
+  また各キャストの情報をボタンで切り替えられるため、各キャストのページで実行する必要がありません。
+
 ## リリース情報
 
 本ブックマークレットのリリース情報は次の通りです。
 
-* Version 1.0 -> 2016.01.31 Released
+* Version 1.0 -> 2016.02.01 Released
   * マイキャストの一覧画面から、獲得済みキャストの情報を取得する機能を追加。
   * 各キャストの情報を取得して、ボタンにより表示内容を切り替える機能を追加。
 
@@ -54,7 +59,7 @@ javascript:(function(d,s){s=d.createElement('script');s.src='https://rawgit.com/
 
 次の手順で、登録したブックマークを実行してください。
 
-* 手順1. [Wonderland.NET](https://wonderland-wars.net/)にアクセスし、マイキャスト> (キャスト選択)で全国対戦プレイデータの画面を表示してください。  
+* 手順1. [Wonderland.NET](https://wonderland-wars.net/)にアクセスし、マイキャスト> (キャスト選択)で全国対戦プレイデータの画面を表示してください。 
 * 手順2. インストールで登録したブックマークを実行してください。  
 * 手順3. 勝率や差分(赤字の括弧書き)が表示されたら成功です。※4,5,6   
 ※4: 初回は0を基準とした差分が値として表示され、0時でリセットされます。  
@@ -74,7 +79,7 @@ javascript:(function(d,s){s=d.createElement('script');s.src='https://rawgit.com/
 Wonderland Wars ワンダーランドウォーズ  
 32ページ目 > [833 ID:GUHfLX0k0](https://github.com/syara-temp/wlw)
 
-plz-monoeye-cast（追加機能）
+plz-monoeye-cast（追加機部分）
 
 ##参考元
 [本気でやっつけてやるんだから！](https://github.com/wlw-bookmarklet/matchlog/)
