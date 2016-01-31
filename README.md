@@ -45,7 +45,7 @@ WLWブックマークレット + 1
 * 手順2. ブックマークの編集でURL部分を次のように書き換えてください。記述ミスを防止するため、コピー&ペーストを推奨します。  
 
 ```
-javascript:(function(d,s){s=d.createElement('script');s.src='https://rawgit.com/plz-monoeye-cast/wlw/master/wlw-cast-custom-plus1.js ';d.body.appendChild(s);})(document)
+javascript:(function(d,s){s=d.createElement('script');s.src='https://rawgit.com/plz-monoeye-cast/wlw/master/wlw-cast-custom-plus1.js';d.body.appendChild(s);})(document)
 ```
 
 * 手順3. [Wonderland.NET](https://wonderland-wars.net/)にアクセスし。マイキャストで一覧を表示してください。
@@ -82,4 +82,4 @@ Wonderland Wars ワンダーランドウォーズ
 plz-monoeye-cast（追加機部分）
 
 ##参考元
-[本気でやっつけてやるんだから！](https://github.com/wlw-bookmarklet/matchlog/)
+[本気でやっつけてやるんだから！](https://github.com/wlw-bookmarklet/matchlog/blob/master/README.md)
