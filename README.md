@@ -101,6 +101,11 @@ javascript:(function(d,s){s=d.createElement('script');s.src='https://rawgit.com/
 javascript:(function(d,s){s=d.createElement('script');s.src='https://rawgit.com/plz-monoeye-cast/wlw/master/wlw-cast-custom-um.js';d.body.appendChild(s);})(document)
 ```
 
+## 既知の問題
+
+* 表示するボタン数が9の倍数でないと、上下列のボタンの位置が合わず、レイアウトが崩れる。(16/02/02)  
+  ⇒修正完了、検証中。
+
 ## 著者
 
 Wonderland Wars ワンダーランドウォーズ  
