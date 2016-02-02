@@ -183,12 +183,20 @@ if(d.URL == "https://wonderland-wars.net/mycast.html"){
 		//キャストIDが取得できた場合
 		if(dci.length != 0){
 		
-			var logout_flg = 0;
+			//エラー番号
+			var err_num = 0;
+			
+			//通信の成功回数
+			var success_cnt = -1;
 		
 			//キャストページからデータを取得
 			for (var i = 0; i < dci.length; i++) {
 				//表示しているキャスト以外は通信して取得
 				if(ci != dci[i]){
+				
+					if(success_cnt == -1){
+						success_cnt++;
+					}
 				
 					//sorcegetに引数は入れららないようなので外で作っておく
 					var srcget_index = i;
@@ -197,8 +205,8 @@ if(d.URL == "https://wonderland-wars.net/mycast.html"){
 					request.onreadystatechange=sorceget;
 					request.send(null);
 					
-					//ログアウト状態だった場合
-					if(logout_flg == 1){
+					//エラーが発生した場合
+					if(err_num != 0){
 						break;
 					}
 					
@@ -255,10 +263,15 @@ if(d.URL == "https://wonderland-wars.net/mycast.html"){
 				
 				}
 			}
+			
+			//通信系などで値が取得できない、または不正な値が取得された場合
+			if(success_cnt == 0 && err_num == 0){
+				err_num = 2;
+			}
 
 		//ADD END
 		
-			if(logout_flg == 0){
+			if(err_num == 0){
 
 				// 初期化
 				for (var i = 0; i < dci.length; i++) {
@@ -442,7 +455,11 @@ if(d.URL == "https://wonderland-wars.net/mycast.html"){
 				block_p_01.parentNode.insertBefore(gameNode, block_p_01);
 			
 			}else{
-				alert("通信エラーが発生しました。\nログアウトされています。\n再度ログインして実行してください。");
+				if(err_num == 1){
+					alert("通信エラーが発生しました。\nログアウトされています。\n再度ログインして実行してください。");
+				}else if(err_num == 2){
+					alert("通信エラーが発生しました。\nキャストページへ正常にアクセスできませんでした。\n通信が不安定になっているか、またはサーバが応答していません。");
+				}
 			}
 //ADD END
 		
@@ -678,7 +695,7 @@ function sorceget(){
 		// ログアウトされていないか確認
 		if(src_txt.match("ログインフォーム")){
 		
-			logout_flg = 1;
+			err_num = 1;
 			
 		}else{
 		
@@ -728,32 +745,45 @@ function sorceget(){
 			splitstr02 = splitstr01[6].split("<");
 			ln[i] = parseFloat(splitstr02[0]);
 			
-			// 敗北数 ... lose count
-			lc[i] = 0;
-			if ((tp[i]-lp[i])!=0) {
-			lc[i] = parseInt(Math.round((wp[i]-tp[i])*wc[i]/(tp[i]-lp[i])));
-			}
+			//各項目が数値かどうかチェック
+			if(isFinite(ur[i]) && isFinite(wc[i]) && isFinite(crc[i]) && isFinite(wdc[i])
+				&& isFinite(tp[i]) && isFinite(wp[i]) || isFinite(lp[i]) && isFinite(tn[i]) 
+				&& isFinite(wn[i]) && isFinite(ln[i])){
+				
+				// 敗北数 ... lose count
+				lc[i] = 0;
+				if ((tp[i]-lp[i])!=0) {
+				lc[i] = parseInt(Math.round((wp[i]-tp[i])*wc[i]/(tp[i]-lp[i])));
+				}
 
-			// 勝率 ... win rate
-			wr[i] = 0;
-			if ((wc[i]+lc[i])!=0) {
-			wr[i] = Math.round(wc[i]/(wc[i]+lc[i])*100*10)/10;
-			}
+				// 勝率 ... win rate
+				wr[i] = 0;
+				if ((wc[i]+lc[i])!=0) {
+				wr[i] = Math.round(wc[i]/(wc[i]+lc[i])*100*10)/10;
+				}
 
-			// Kill Ratio ... kill ratio
-			kr[i] = 0;
-			if (wdc[i]!=0) {
-			kr[i] = Math.round(crc[i]/wdc[i]*100)/100;
+				// Kill Ratio ... kill ratio
+				kr[i] = 0;
+				if (wdc[i]!=0) {
+				kr[i] = Math.round(crc[i]/wdc[i]*100)/100;
+				}
+				
+				//キャスト画像アドレスを取得
+				splitstr01 = src_txt.split(CAST_IMG_URL);
+				splitstr02 = splitstr01[1].split("\">");
+				castimgurl[i] = splitstr02[0];
+				
+				//全キャスト勝率以下の箇所は、既存の処理を流用するため
+				//ここで通信分の情報をcookieに格納する
+				savecookie(srcget_index,dci[i]);
+				
+				success_cnt++;
+
+			}else{
+			
+				//数値でない場合
+				err_num = 2;
 			}
-			
-			//キャスト画像アドレスを取得
-			splitstr01 = src_txt.split(CAST_IMG_URL);
-			splitstr02 = splitstr01[1].split("\">");
-			castimgurl[i] = splitstr02[0];
-			
-			//全キャスト勝率以下の箇所は、既存の処理を流用するため
-			//ここで通信分の情報をcookieに格納する
-			savecookie(srcget_index,dci[i]);
 		}
 	}
 }
