@@ -187,16 +187,12 @@ if(d.URL == "https://wonderland-wars.net/mycast.html"){
 			var err_num = 0;
 			
 			//通信の成功回数
-			var success_cnt = -1;
+			var success_cnt = 0;
 		
 			//キャストページからデータを取得
 			for (var i = 0; i < dci.length; i++) {
 				//表示しているキャスト以外は通信して取得
 				if(ci != dci[i]){
-				
-					if(success_cnt == -1){
-						success_cnt++;
-					}
 				
 					//sorcegetに引数は入れららないようなので外で作っておく
 					var srcget_index = i;
@@ -265,7 +261,7 @@ if(d.URL == "https://wonderland-wars.net/mycast.html"){
 			}
 			
 			//通信系などで値が取得できない、または不正な値が取得された場合
-			if(success_cnt == 0 && err_num == 0){
+			if(err_num == 0 && success_cnt != dci.length - 1){
 				err_num = 2;
 			}
 
