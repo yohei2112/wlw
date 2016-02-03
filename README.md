@@ -61,7 +61,7 @@ javascript:(function(d,s){s=d.createElement('script');s.src='https://rawgit.com/
 
 * 手順3. [Wonderland.NET](https://wonderland-wars.net/)にアクセスし。マイキャストで一覧を表示してください。
 * 手順4. 手順1,2で作成したブックマークを実行してください。 
-* 手順5. 「獲得済みキャスト情報取得が完了しました。」とメッセージが表示されれば完了です。（使い方に続きます）  
+* 手順5. 「獲得済みキャスト情報取得が完了しました。」とメッセージが表示されれば完了です。（*使い方に続きます*）  
 ![SAMPLE2](sample2.png)
 
 ## 使い方
