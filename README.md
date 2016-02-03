@@ -61,7 +61,7 @@ javascript:(function(d,s){s=d.createElement('script');s.src='https://rawgit.com/
 
 * 手順3. [Wonderland.NET](https://wonderland-wars.net/)にアクセスし。マイキャストで一覧を表示してください。
 * 手順4. 手順1,2で作成したブックマークを実行してください。 
-* 手順5. 「獲得済みキャスト情報取得が完了しました。」とメッセージが表示されれば完了です。  
+* 手順5. 「獲得済みキャスト情報取得が完了しました。」とメッセージが表示されれば完了です。（使い方に続きます）  
 ![SAMPLE2](sample2.png)
 
 ## 使い方
@@ -105,6 +105,18 @@ javascript:(function(d,s){s=d.createElement('script');s.src='https://rawgit.com/
 ```
 javascript:(function(d,s){s=d.createElement('script');s.src='https://rawgit.com/plz-monoeye-cast/wlw/master/wlw-cast-custom-um.js';d.body.appendChild(s);})(document)
 ```
+
+## 連絡先
+#### 導入時に問題が起きた場合は、再度インストールと使い方をご確認ください。
+
+動作しない、表示がおかしいなど何かありましたら、ご連絡ください。
+
+お手数ですが、ご連絡の前に以下の内容をご確認をお願いします。
+* 1. 画面の更新（再表示）を行ってから実行する。  
+      （ブラウザ側の問題？なのか、一定時間放置したりすると、このブックマークレットの読出しが上手くいかないことがある）  
+* 2. 当ページが開くかどうか確認する。（github自体がメンテナンス等の場合があります）
+
+メールフォーム：[http://form1.fc2.com/form/?id=ea9e91e0c71d5f3e](http://form1.fc2.com/form/?id=ea9e91e0c71d5f3e)
 
 ## 既知の問題
 なし。
