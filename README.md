@@ -121,7 +121,6 @@ javascript:(function(d,s){s=d.createElement('script');s.src='https://rawgit.com/
 　　（PC版、Android版Chromeで確認）
 * 2. Cookieが無効になっていないか確認してください。  
 　　Cookieを利用しているため、無効になっていると動作しません。
-* 3. 複数のカードを利用している場合、正常に動作しません。  
 
 メールフォーム：[http://form1.fc2.com/form/?id=ea9e91e0c71d5f3e](http://form1.fc2.com/form/?id=ea9e91e0c71d5f3e)
 
