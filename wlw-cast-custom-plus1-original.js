@@ -1,11 +1,17 @@
+//ADD STARTとかUPDATE STARTは割とあてになりません。ごめんなさい。
+
 javascript:
 
 var d = document;
 
+var CAST_LIST_URL = "https://wonderland-wars.net/mycast.html";
+
+var CAST_URL = "https://wonderland-wars.net/castdetail.html?cast=";
+
 //ADD START キャスト一覧で獲得済みキャスト情報を取得してIDと名称をcookieに格納 
 
 //マイキャスト一覧で実行された場合、獲得済みキャスト情報を取得
-if(d.URL == "https://wonderland-wars.net/mycast.html"){
+if(d.URL == CAST_LIST_URL){
 
 	//各キャストID
 	var acqci = [];
@@ -66,11 +72,11 @@ if(d.URL == "https://wonderland-wars.net/mycast.html"){
 		//キャストIDをcookieに保存
 		d.cookie = "acqcn" + "=" + escape(acqcn.join(":")) + "; expires=" + ex.toUTCString();
 
-		alert("獲得済みキャスト情報取得が完了しました。\n獲得済みキャスト数：" + acqci.length);
+		alert("獲得済みキャスト情報取得が完了しました。\n各キャストのページでブックマークレットを実行することで、勝率などを確認できます。\n新たなキャストを獲得した場合は、再度獲得済みキャスト情報取得を行ってください。\n獲得済みキャスト数：" + acqci.length);
 		
 	}
 	
-}else{
+}else if(d.URL.indexOf(CAST_URL) >= 0){
 	
 //ADD END
 
@@ -118,8 +124,6 @@ if(d.URL == "https://wonderland-wars.net/mycast.html"){
 		//各キャストページからデータを取得する
 
 		var request= new XMLHttpRequest();
-
-		var CAST_URL = "https://wonderland-wars.net/castdetail.html?cast=";
 
 		var src_txt = null;
 		
@@ -464,7 +468,11 @@ if(d.URL == "https://wonderland-wars.net/mycast.html"){
 			alert("獲得済みキャスト情報が取得できませんでした。\nマイキャスト一覧で獲得済みキャスト情報取得を実行してください。");
 		}
 	}
+}else{
+	alert("実行するページを間違えています。\n下記のページで実行してください。\nマイキャスト一覧\n「" + CAST_LIST_URL + "」\n各キャストページ\n「" + CAST_URL + "XX」");
 }
+
+
 
 //ADD START 獲得済みキャスト情報取得で使用するfunctionを追加
 
