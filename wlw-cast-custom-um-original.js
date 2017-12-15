@@ -333,6 +333,21 @@ if(d.URL == CAST_LIST_URL){
 
 //ADD START 獲得済みキャスト情報取得で使用するfunctionを追加
 
+//ロールがファイターかチェックする
+function chkrolepage(){
+	//現在のページを取得
+	var pbpo = d.querySelector('.tab_cast_on');
+
+	if(pbpo != null){
+		if(pbpo.id != "fil_fig"){
+			alert("獲得済みキャスト情報取得はファイターのタブで実行して下さい。");
+			return false;
+		}
+	}
+	
+	return true;
+}
+
 function chkpage(){
 	//現在のページを取得
 	var pbpo = d.querySelector('.page_block_page_on');
