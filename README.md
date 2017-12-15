@@ -24,6 +24,8 @@ WLWブックマークレット + 1
 ## リリース情報
 
 WLWブックマークレット + 1
+* Version 1.3 -> 2017.12.16 Released
+  * ver3に対応。
 * Version 1.2 -> 2016.02.25 Released
   * 処理を高速化。
 * Version 1.1.2 -> 2016.02.05 Released
@@ -67,7 +69,7 @@ javascript:(function(d,s){s=d.createElement('script');s.src='https://rawgit.com/
 ```
 
 * 手順3. [Wonderland.NET](https://wonderland-wars.net/)にアクセスし。マイキャストで一覧を表示してください。
-* 手順4. 手順1,2で作成したブックマークを実行してください。 
+* 手順4. 手順1,2で作成したブックマークを実行してください。 注：ファイタータブの1ページ目で実行してください。
 * 手順5. 「獲得済みキャスト情報取得が完了しました。」とメッセージが表示されれば完了です。（*使い方に続きます*）  
 ![SAMPLE2](sample2.png)
 
@@ -128,6 +130,7 @@ javascript:(function(d,s){s=d.createElement('script');s.src='https://rawgit.com/
 
 ## 今後の予定＆既知の問題
 特になし。
+
 
 ## 著者
 
