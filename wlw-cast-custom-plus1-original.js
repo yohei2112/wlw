@@ -139,6 +139,9 @@ if (d.URL == CAST_LIST_URL) {
     // Kill Ratio ... kill ratio
     var kr = [];
 
+    var averageKillCount = [];
+    var averageDeathCount = [];
+
     // キャストID ... cast id
     // 文字数圧縮のため、パラメータはcastを前提とする
     var q = window.location.search.substring(1);
@@ -239,6 +242,9 @@ if (d.URL == CAST_LIST_URL) {
         kr[proc_ci] = Math.round(crc[proc_ci] / wdc[proc_ci] * 100) / 100;
       }
 
+      averageKillCount[proc_ci] = Math.round(crc[proc_ci] / (wc[proc_ci] + lc[proc_ci]) * 100) / 100;
+      averageDeathCount[proc_ci] = Math.round(wdc[proc_ci] / (wc[proc_ci] + lc[proc_ci]) * 100) / 100;
+
       //キャスト画像アドレスを取得
       var ciusplitstr = d.querySelector('.data_cast_img').innerHTML.split("\"")[1];
       castimgurl[proc_ci] = ciusplitstr.split(CAST_IMG_URL)[1];
@@ -284,9 +290,9 @@ function disp_proc() {
   var cd = [now, ur[proc_ci], wc[proc_ci], lc[proc_ci],
     wr[proc_ci], crc[proc_ci], wdc[proc_ci], kr[proc_ci],
     tp[proc_ci], wp[proc_ci], lp[proc_ci],
-    tn[proc_ci], wn[proc_ci], ln[proc_ci]
+    tn[proc_ci], wn[proc_ci], ln[proc_ci], averageKillCount[proc_ci], averageDeathCount[proc_ci]
   ];
-  var pcd = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  var pcd = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   var ppcd = pcd.concat();
 
   var day = 1000 * 3600 * 24;
@@ -364,6 +370,8 @@ function disp_proc() {
   insert(2, "敗北数", lc[proc_ci] + "<span class=\"font_small\">敗</span>");
   insert(2, "勝率", wr[proc_ci] + "％");
   insert(4, "Kill Ratio", kr[proc_ci]);
+  insert(4, "平均Kill", averageKillCount[proc_ci]);
+  insert(4, "平均Death", averageDeathCount[proc_ci]);
 
   function diff(i, t) {
     var iad = Math.round((cd[i] - pcd[i]) * 100) / 100;
@@ -520,9 +528,10 @@ function savecookie(fpci, id) {
   var now = new Date().getTime();
   var cd = [now, ur[fpci], wc[fpci], lc[fpci], wr[fpci], crc[fpci], wdc[fpci], kr[fpci],
     tp[fpci], wp[fpci], lp[fpci],
-    tn[fpci], wn[fpci], ln[fpci]
+    tn[fpci], wn[fpci], ln[fpci],
+    averageKillCount[fpci], averageDeathCount[fpci]
   ];
-  var pcd = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  var pcd = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   //当日以前の実行データのcookie名
   var pci = "p" + id;
@@ -606,6 +615,11 @@ function changedisp(fpci) {
     //Kill Ratio
     p1[6].innerHTML = kr[fpci];
     diff_cd(kr[fpci], ppcd[7], p1[6]);
+
+    p1[7].innerHTML = averageKillCount[fpci];
+    diff_cd(averageKillCount[fpci], ppcd[8], p1[7]);
+    p1[8].innerHTML = averageDeathCount[fpci];
+    diff_cd(averageDeathCount[fpci], ppcd[9], p1[8]);
 
     var p2 = d.querySelectorAll('.block_playdata_02_text');
 
@@ -736,6 +750,9 @@ function sorceget(src_txt, i) {
         if (wdc[i] != 0) {
           kr[i] = Math.round(crc[i] / wdc[i] * 100) / 100;
         }
+
+        averageKillCount[i] = Math.round(crc[i] / (wc[i] + lc[i]) * 100) / 100;
+        averageDeathCount[i] = Math.round(wdc[i] / (wc[i] + lc[i]) * 100) / 100;
 
         //キャスト画像アドレスを取得
         splitstr01 = src_txt.split(CAST_IMG_URL);
