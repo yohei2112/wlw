@@ -6,7 +6,7 @@ var CAST_LIST_URL = "https://wonderland-wars.net/mycast.html";
 
 var CAST_URL = "https://wonderland-wars.net/castdetail.html?cast=";
 
-//ADD START キャスト一覧で獲得済みキャスト情報を取得してIDと名称をcookieに格納 
+//ADD START キャスト一覧で獲得済みキャスト情報を取得してIDと名称をcookieに格納
 
 //マイキャスト一覧で実行された場合、獲得済みキャスト情報を取得
 if(d.URL == CAST_LIST_URL){
@@ -16,96 +16,96 @@ if(d.URL == CAST_LIST_URL){
 
 	//各キャスト名
 	var acqcn = [];
-	
-	
+
+
 	//タブがファイターの場合
 	if(chkrolepage()){
-	
+
 		//1ページ目の場合
 		if(chkpage()){
-			
+
 			//タブボタンを取得
 			var ptbp = d.querySelectorAll('.tab_cast');
-			
+
 			//タブ数を取得
 			var tabcnt = ptbp.length;
-			
+
 			//ページボタン保存変数
 			var pbp;
-			
+
 			//タブ分回す
 			for (var ti = -1; ti < tabcnt; ti++) {
-			
+
 				//初回時以外
 				if(ti != -1){
-			
+
 					//タブボタンを強制的にクリックして移動
 					ptbp[ti].click();
-			
+
 					//ページ情報を取得
 					d = document;
-					
+
 					//タブボタンを取得
 					var ptbp = d.querySelectorAll('.tab_cast');
 				}
-			
+
 				//キャストIDを取得
 				getCastId();
-			
+
 				//キャスト名を取得
 				getCastName();
 
 				//表示していないページを取得
 				var pbp = d.querySelectorAll('.page_block_page');
-				
+
 				//2ページ目以降がある場合
 				if(pbp.length != 0){
 
 					var pagecnt = pbp.length;
 
 					for (var i = 0; i < pagecnt; i++) {
-				
+
 						//ページボタンを強制的にクリックして移動
 						pbp[i].click();
-				
+
 						//ページ情報を取得
 						d = document;
-				
+
 						//キャストIDを取得
 						getCastId();
-			
+
 						//キャスト名を取得
 						getCastName();
-				
+
 						//表示していないページを取得
 						pbp = d.querySelectorAll('.page_block_page');
 					}
 				}
-				
+
 			}
-			
+
 			//ファイタータブに戻す
 			ptbp[0].click();
-			
+
 			var now = new Date().getTime();
 			var day = 1000*3600*24;
 			// Cookieの有効期限(365日間)
 			var ex = new Date();
 			ex.setTime(now+day*365);
-			
+
 			//キャストIDをcookieに保存
 			d.cookie = "acqci" + "=" + escape(acqci.join(":")) + "; expires=" + ex.toUTCString();
-			
+
 			//キャストIDをcookieに保存
 			d.cookie = "acqcn" + "=" + escape(acqcn.join(":")) + "; expires=" + ex.toUTCString();
 
 			alert("獲得済みキャスト情報取得が完了しました。\n各キャストのページでブックマークレットを実行することで、勝率などを確認できます。\n新たなキャストを獲得した場合は、再度獲得済みキャスト情報取得を行ってください。\n獲得済みキャスト数：" + acqci.length);
-			
-		}			
+
+		}
 	}
-	
+
 }else if(d.URL.indexOf(CAST_URL) >= 0){
-	
+
 //ADD END
 
 	if (d.getElementById('wlw_custom')==null) {
@@ -139,7 +139,7 @@ if(d.URL == CAST_LIST_URL){
 		var lc = 0;
 		if ((tp-lp)!=0) {
 		lc = parseInt(Math.round((wp-tp)*wc/(tp-lp)));
-		} 
+		}
 		// 勝率 ... win rate
 		var wr = 0;
 		if ((wc+lc)!=0) {
@@ -180,7 +180,7 @@ if(d.URL == CAST_LIST_URL){
 			var c = d.cookie.split(";");
 			for (var i = 0; i < c.length; i++) {
 				var kv = c[i].trim().split("=");
-				
+
 				if(kv[0] == "acqci"){
 					dci = unescape(kv[1]).split(":");
 				}else if(kv[0] == "acqcn"){
@@ -316,14 +316,14 @@ if(d.URL == CAST_LIST_URL){
 			for (var i = 0; i < dci.length; i++) {
 			// 試合数が0のキャストは表示しない
 			if ((cwca[dci[i]]+clca[dci[i]])>0) {
-				insert(6, "<span class=\"font_90\">"+dcn[i]+"</span>", cwra[dci[i]]+"% <span class=\"font_small\">("+cwca[dci[i]]+"勝"+clca[dci[i]]+"敗)</span>");		
+				insert(6, "<span class=\"font_90\">"+dcn[i]+"</span>", cwra[dci[i]]+"% <span class=\"font_small\">("+cwca[dci[i]]+"勝"+clca[dci[i]]+"敗)</span>");
 			}
 			}
 
 			fi.parentNode.replaceChild(nfi, fi);
-		
+
 		}else{
-		
+
 			alert("獲得済みキャスト情報が取得できませんでした。\nマイキャスト一覧で獲得済みキャスト情報取得を実行してください。");
 		}
 	}
@@ -344,7 +344,7 @@ function chkrolepage(){
 			return false;
 		}
 	}
-	
+
 	return true;
 }
 
@@ -363,17 +363,17 @@ function chkpage(){
 
 //キャストIDを取得し、各キャストID変数(acqci)に設定
 function getCastId(){
-	
+
 	var urlstr;
 	var splitstr = [];
-	
+
 	//キャストIDを取得
 	for (var i = 0; i < d.links.length; i++) {
 		urlstr = d.links[i].toString();
-	
+
 		if(urlstr.match(/cast=/)){
 			splitstr = urlstr.split("cast=");
-		
+
 			acqci.push(splitstr[1]);
 		}
 	}
@@ -384,7 +384,7 @@ function getCastName(){
 
 	//キャスト名部分の情報を取得
 	var bcc = d.querySelectorAll('.block_cast_castname');
-	
+
 	//キャスト名を取得
 	for (var i = 0; i < bcc.length; i++) {
 		acqcn.push(bcc[i].textContent);
