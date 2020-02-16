@@ -289,8 +289,9 @@ function disp_proc() {
   var now = new Date().getTime();
   var cd = [now, ur[proc_ci], wc[proc_ci], lc[proc_ci],
     wr[proc_ci], crc[proc_ci], wdc[proc_ci], kr[proc_ci],
+    averageKillCount[proc_ci], averageDeathCount[proc_ci],
     tp[proc_ci], wp[proc_ci], lp[proc_ci],
-    tn[proc_ci], wn[proc_ci], ln[proc_ci], averageKillCount[proc_ci], averageDeathCount[proc_ci]
+    tn[proc_ci], wn[proc_ci], ln[proc_ci]
   ];
   var pcd = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   var ppcd = pcd.concat();
@@ -386,12 +387,12 @@ function disp_proc() {
     t.innerHTML = t.innerHTML + " <span style=\"color:#ff0000;\" class=\"font_small\">(" + pm + iad + ")</span>";
   }
   var np1 = nfi.querySelectorAll('.block_playdata_01_text');
-  for (var i = 0; i < 7; i++) {
+  for (var i = 0; i < 9; i++) {
     diff(i + 1, np1[i]);
   }
   var np2 = nfi.querySelectorAll('.block_playdata_02_text');
   for (var i = 0; i < 6; i++) {
-    diff(i + 8, np2[i]);
+    diff(i + 10, np2[i]);
   }
   insert(6, "全キャスト勝率", awr + "％ <span class=\"font_small\">(" + awc + "勝" + alc + "敗)</span>");
   for (var i = 0; i < dci.length; i++) {
@@ -527,9 +528,9 @@ function savecookie(fpci, id) {
   // 獲得ナイス(平均)、勝利時(平均)、敗北時(平均)
   var now = new Date().getTime();
   var cd = [now, ur[fpci], wc[fpci], lc[fpci], wr[fpci], crc[fpci], wdc[fpci], kr[fpci],
+    averageKillCount[fpci], averageDeathCount[fpci],
     tp[fpci], wp[fpci], lp[fpci],
     tn[fpci], wn[fpci], ln[fpci],
-    averageKillCount[fpci], averageDeathCount[fpci]
   ];
   var pcd = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
@@ -625,27 +626,27 @@ function changedisp(fpci) {
 
     // キャスト別評価(平均) ... total page
     p2[0].innerHTML = tp[fpci].toFixed(1) + "p";
-    diff_cd(tp[fpci], ppcd[8], p2[0]);
+    diff_cd(tp[fpci], ppcd[10], p2[0]);
 
     // 勝利時(平均) ... win page
     p2[1].innerHTML = wp[fpci].toFixed(1) + "p";
-    diff_cd(wp[fpci], ppcd[9], p2[1]);
+    diff_cd(wp[fpci], ppcd[11], p2[1]);
 
     // 敗北時(平均) ... lose page
     p2[2].innerHTML = lp[fpci].toFixed(1) + "p";
-    diff_cd(lp[fpci], ppcd[10], p2[2]);
+    diff_cd(lp[fpci], ppcd[12], p2[2]);
 
     // 獲得ナイス(平均) ... total nice
     p2[3].innerHTML = tn[fpci].toFixed(1);
-    diff_cd(tn[fpci], ppcd[11], p2[3]);
+    diff_cd(tn[fpci], ppcd[13], p2[3]);
 
     // 勝利時(平均) ... win nice
     p2[4].innerHTML = wn[fpci].toFixed(1);
-    diff_cd(wn[fpci], ppcd[12], p2[4]);
+    diff_cd(wn[fpci], ppcd[14], p2[4]);
 
     // 敗北時(平均) ... lose nice
     p2[5].innerHTML = ln[fpci].toFixed(1);
-    diff_cd(ln[fpci], ppcd[13], p2[5]);
+    diff_cd(ln[fpci], ppcd[15], p2[5]);
   }
 }
 
